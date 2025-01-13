@@ -24,8 +24,10 @@ export type Image = {
 export type Car = {
   id: number;
   model: Model;
+  brand: Brand;
   images: Image[];
   description: string;
   year: string;
   is_available: boolean;
+  price_per_day: number;
 };
