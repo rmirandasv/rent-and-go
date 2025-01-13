@@ -20,11 +20,6 @@ export function Header() {
                 Cars
               </Link>
             </li>
-            <li>
-              <Link href="/models" className="hover:text-primary">
-                Models
-              </Link>
-            </li>
           </ul>
         </nav>
         <Button>Book Now</Button>
