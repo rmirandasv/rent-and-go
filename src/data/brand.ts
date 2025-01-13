@@ -7,6 +7,9 @@ const getBrands = async () => {
       logo: {
         fields: ["url", "width", "height"],
       },
+      cars: {
+        fields: ["id"],
+      },
     },
   });
   const response = await fetch(`${STRAPI_API_URL}/brands?${query}`, {

@@ -6,6 +6,7 @@ export type Brand = {
     width: number;
     height: number;
   };
+  cars: Car[];
 };
 
 export type Model = {
