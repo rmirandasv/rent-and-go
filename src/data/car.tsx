@@ -9,13 +9,18 @@ const getCars = async () => {
         populate: {
           brand: {
             fields: ["name"],
+            populate: {
+              logo: {
+                fields: ["url", "width", "height"],
+              },
+            },
           },
         },
       },
       images: {
         fields: ["url", "width", "height"],
       },
-    }
+    },
   });
 
   const res = await fetch(`${STRAPI_API_URL}/cars?${query}`, {
@@ -27,6 +32,6 @@ const getCars = async () => {
   const data = await res.json();
 
   return data;
-}
+};
 
 export { getCars };

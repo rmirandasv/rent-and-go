@@ -3,8 +3,8 @@ import { Button } from "@/components/ui/button";
 
 export function Header() {
   return (
-    <header className="bg-background border-b">
-      <div className="container flex items-center justify-between py-4">
+    <header className="px-4 lg:px-8 bg-background border-b">
+      <div className="flex items-center justify-between py-4">
         <Link href="/" className="text-2xl font-bold">
           Rent and Go
         </Link>
