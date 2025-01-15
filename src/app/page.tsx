@@ -1,7 +1,7 @@
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
 import Link from "next/link";
-import landingImage from "./landing-image.jpg";
+import landingImage from "./landing-image.webp";
 import { getFeaturedCars } from "@/data/car";
 import { Car } from "@/types";
 import CarCard from "@/components/car-card/car-card";
@@ -21,6 +21,7 @@ function HeroSection() {
           <div className="md:w-1/2">
             <Image
               src={landingImage}
+              placeholder="blur"
               alt="Rent and Go landing image"
               className="rounded-lg shadow-lg"
             />
