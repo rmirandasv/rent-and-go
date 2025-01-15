@@ -32,3 +32,9 @@ export type Car = {
   is_available: boolean;
   price_per_day: number;
 };
+
+export type User = {
+  name: string;
+  email: string;
+  image: string;
+};

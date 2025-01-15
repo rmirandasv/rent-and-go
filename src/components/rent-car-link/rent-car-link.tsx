@@ -9,7 +9,6 @@ export default function RentCarLink({ car }: { car: Car }) {
     async function fetchSession () {
       const response = await fetch("/api/auth/session");
       const data = await response.json();
-      console.log(data);
       if (data?.user) {
         setHref(`/cars/${car.documentId}/rent`);
       } else {

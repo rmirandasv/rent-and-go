@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
+import UserMenu from "./user-menu";
 
 export function Header() {
   return (
@@ -22,7 +23,10 @@ export function Header() {
             </li>
           </ul>
         </nav>
-        <Button>Book Now</Button>
+        <div className="flex items-center space-x-4">
+          <Button>Book Now</Button>
+          <UserMenu />
+        </div>
       </div>
     </header>
   );
