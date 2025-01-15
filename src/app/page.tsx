@@ -2,25 +2,24 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import Image from "next/image";
 import Link from "next/link";
+import landingImage from "./landing-image.jpg";
 
 function HeroSection() {
   return (
-    <section className="bg-gradient-to-r from-primary to-primary-foreground text-white py-20">
+    <section className="px-4 md:px-8 lg:px-10 bg-gradient-to-r from-primary to-primary-foreground text-white py-20">
       <div className="container">
         <div className="flex flex-col md:flex-row items-center">
           <div className="md:w-1/2 mb-8 md:mb-0">
             <h1 className="text-4xl md:text-6xl font-bold mb-4">Drive Your Dreams</h1>
             <p className="text-xl mb-6">Rent the perfect car for your next adventure</p>
-            <Button size="lg" asChild>
+            <Button size="lg" asChild className="p-9 bg-gradient-to-r from-gray-500 to-gray-700 text-2xl uppercase">
               <Link href="/cars">Explore Cars</Link>
             </Button>
           </div>
           <div className="md:w-1/2">
             <Image
-              src="/placeholder.svg?height=400&width=600"
-              alt="Luxury car"
-              width={600}
-              height={400}
+              src={landingImage}
+              alt="Rent and Go landing image"
               className="rounded-lg shadow-lg"
             />
           </div>
