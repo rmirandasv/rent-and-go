@@ -9,7 +9,7 @@ import { getCar } from "@/data/car";
 import Image from "next/image";
 import { STRAPI_URL } from "@/config/strapi";
 import Markdown from "react-markdown";
-import Link from "next/link";
+import RentCarLink from "@/components/rent-car-link/rent-car-link";
 
 export default async function CarDetailPage({
   params,
@@ -72,15 +72,10 @@ export default async function CarDetailPage({
           </span>
         </div>
         <h2 className="text-base text-gray-600">{car.model.brand.name}</h2>
-        <Markdown className="p-4 bg-white mt-4 max-w-full w-full prose rounded-lg shadow">
+        <Markdown className="p-4 bg-white mt-4 max-w-full w-full prose rounded-lg shadow mb-4">
           {car.description}
         </Markdown>
-        <Link
-          href={`/cars/${car.documentId}/rent`}
-          className="block bg-green-600 text-white p-4 text-center rounded-lg mt-4 text-lg uppercase font-bold"
-        >
-          Rent this car
-        </Link>
+        <RentCarLink car={car} />
       </div>
     </div>
   );
