@@ -20,7 +20,7 @@ import { STRAPI_URL } from "@/config/strapi";
 
 export default function CarCard({ car }: { car: Car }) {
   return (
-    <Card key={car.id}>
+    <Card key={car.documentId}>
       <CardHeader className="flex flex-row items-center space-x-2">
         <Image
           src={`${STRAPI_URL}${car.model.brand.logo.url}`}
@@ -57,7 +57,7 @@ export default function CarCard({ car }: { car: Car }) {
       <CardFooter className="flex justify-between">
         <span className="text-lg font-semibold">${car.price_per_day}/day</span>
         <Button asChild>
-          <Link href={`/cars/${car.id}`}>View Details</Link>
+          <Link href={`/cars/${car.documentId}`}>View Details</Link>
         </Button>
       </CardFooter>
     </Card>

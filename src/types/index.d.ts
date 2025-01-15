@@ -16,13 +16,14 @@ export type Model = {
 };
 
 export type Image = {
+  id: number;
   url: string;
   width: number;
   height: number;
 };
 
 export type Car = {
-  id: number;
+  documentId: string;
   model: Model;
   brand: Brand;
   images: Image[];
