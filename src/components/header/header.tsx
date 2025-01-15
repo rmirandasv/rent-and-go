@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/button";
 
 export function Header() {
   return (
-    <header className="px-4 lg:px-8 bg-background border-b">
+    <header className="px-4 md:px-8 lg:px-10 bg-background border-b">
       <div className="flex items-center justify-between py-4">
         <Link href="/" className="text-2xl font-bold">
           Rent and Go
