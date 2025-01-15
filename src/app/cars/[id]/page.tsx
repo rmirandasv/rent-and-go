@@ -21,23 +21,32 @@ export default async function CarDetailPage({
   return (
     <div className="flex flex-col md:flex-row">
       <div className="p-4 md:px-8 w-full md:1/2 flex flex-col">
-        <Carousel>
-          <CarouselContent>
-            {car.images.map((image) => (
-              <CarouselItem key={image.id}>
-                <Image
-                  src={`${STRAPI_URL}${image.url}`}
-                  width={image.width}
-                  height={image.height}
-                  alt={car.model.brand.name}
-                  className="rounded-md"
-                />
-              </CarouselItem>
-            ))}
-          </CarouselContent>
-          <CarouselPrevious />
-          <CarouselNext />
-        </Carousel>
+        {car.images && (
+          <Carousel>
+            <CarouselContent>
+              {car.images.map((image) => (
+                <CarouselItem key={image.id}>
+                  <Image
+                    src={`${STRAPI_URL}${image.url}`}
+                    width={image.width}
+                    height={image.height}
+                    alt={car.model.brand.name}
+                    className="rounded-md h-96"
+                  />
+                </CarouselItem>
+              ))}
+            </CarouselContent>
+            <CarouselPrevious />
+            <CarouselNext />
+          </Carousel>
+        )}
+        {!car.images && (
+          <div className="h-96 bg-gray-200 rounded-md flex content-center">
+            <p className="text-muted-foreground text-center self-center w-full">
+              No image available
+            </p>
+          </div>
+        )}
         <div className="mt-4 flex-col md:flex-row flex items-center md:justify-between">
           <div className="flex items-center space-x-4">
             <Image
@@ -52,9 +61,7 @@ export default async function CarDetailPage({
               <span className="text-2xl font-bold">{car.model.name}</span>
             </p>
           </div>
-          <span className="text-2xl text-gray-600">
-            {car.year}
-          </span>
+          <span className="text-2xl text-gray-600">{car.year}</span>
         </div>
       </div>
       <div className="p-4 md:px-20 w-full md:1/2 bg-gray-200">

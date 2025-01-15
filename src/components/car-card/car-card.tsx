@@ -32,25 +32,36 @@ export default function CarCard({ car }: { car: Car }) {
         <CardTitle>{car.model.name}</CardTitle>
       </CardHeader>
       <CardContent>
-        <Carousel>
-          <CarouselPrevious />
-          <CarouselContent>
-            {car.images.map((image, index) => (
-              <CarouselItem key={index}>
-                <Image
-                  src={`${STRAPI_URL}${image.url}`}
-                  alt={car.model.name}
-                  width={image.width}
-                  height={image.height}
-                  className="rounded-md"
-                />
-              </CarouselItem>
-            ))}
-          </CarouselContent>
-          <CarouselNext />
-        </Carousel>
+        {car.images && (
+          <Carousel>
+            <CarouselPrevious />
+            <CarouselContent>
+              {car.images.map((image, index) => (
+                <CarouselItem key={index}>
+                  <Image
+                    src={`${STRAPI_URL}${image.url}`}
+                    alt={car.model.name}
+                    width={image.width}
+                    height={image.height}
+                    className="rounded-md h-64"
+                  />
+                </CarouselItem>
+              ))}
+            </CarouselContent>
+            <CarouselNext />
+          </Carousel>
+        )}
+        {!car.images && (
+          <div className="h-64 bg-gray-200 rounded-md flex content-center">
+            <p className="text-muted-foreground text-center self-center w-full">
+              No image available
+            </p>
+          </div>
+        )}
         <div className="flex flex-col md:flex-row md:items-center md:justify-between">
-          <p className="mt-4 text-muted-foreground">Brand: {car.model.brand.name}</p>
+          <p className="mt-4 text-muted-foreground">
+            Brand: {car.model.brand.name}
+          </p>
           <p className="text-muted-foreground">Model: {car.model.name}</p>
         </div>
       </CardContent>
