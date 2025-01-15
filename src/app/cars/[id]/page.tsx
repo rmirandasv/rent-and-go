@@ -20,7 +20,7 @@ export default async function CarDetailPage({
   const car = await getCar(id);
   return (
     <div className="flex flex-col md:flex-row">
-      <div className="p-4 w-full md:1/2">
+      <div className="p-4 md:px-8 w-full md:1/2 flex flex-col">
         <Carousel>
           <CarouselContent>
             {car.images.map((image) => (
@@ -38,17 +38,40 @@ export default async function CarDetailPage({
           <CarouselPrevious />
           <CarouselNext />
         </Carousel>
+        <div className="mt-4 flex-col md:flex-row flex items-center md:justify-between">
+          <div className="flex items-center space-x-4">
+            <Image
+              src={`${STRAPI_URL}${car.model.brand.logo.url}`}
+              width={64}
+              height={64}
+              alt={car.model.brand.name}
+            />
+            <p>
+              <span className="text-2xl font-bold">{car.model.brand.name}</span>
+              &nbsp;-&nbsp;
+              <span className="text-2xl font-bold">{car.model.name}</span>
+            </p>
+          </div>
+          <span className="text-2xl text-gray-600">
+            {car.year}
+          </span>
+        </div>
       </div>
       <div className="p-4 md:px-20 w-full md:1/2 bg-gray-200">
         <div className="flex items-center justify-between">
           <h1 className="text-4xl">{car.model.name}</h1>
-          <span className="text-2xl font-bold text-green-600">${car.price_per_day} / day</span>
+          <span className="text-2xl font-bold text-green-600">
+            ${car.price_per_day} / day
+          </span>
         </div>
         <h2 className="text-base text-gray-600">{car.model.brand.name}</h2>
         <Markdown className="p-4 bg-white mt-4 max-w-full w-full prose rounded-lg shadow">
           {car.description}
         </Markdown>
-        <Link href={`/cars/${car.documentId}/rent`} className="block bg-green-600 text-white p-4 text-center rounded-lg mt-4 text-lg uppercase font-bold">
+        <Link
+          href={`/cars/${car.documentId}/rent`}
+          className="block bg-green-600 text-white p-4 text-center rounded-lg mt-4 text-lg uppercase font-bold"
+        >
           Rent this car
         </Link>
       </div>
