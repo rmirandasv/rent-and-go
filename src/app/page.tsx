@@ -1,8 +1,10 @@
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import Image from "next/image";
 import Link from "next/link";
 import landingImage from "./landing-image.jpg";
+import { getFeaturedCars } from "@/data/car";
+import { Car } from "@/types";
+import CarCard from "@/components/car-card/car-card";
 
 function HeroSection() {
   return (
@@ -29,40 +31,16 @@ function HeroSection() {
   )
 }
 
-function FeaturedCars() {
-  const featuredCars = [
-    { id: 1, name: "Luxury Sedan", brand: "Brand A", price: 100 },
-    { id: 2, name: "Sports Car", brand: "Brand B", price: 150 },
-    { id: 3, name: "SUV", brand: "Brand C", price: 120 },
-  ]
+async function FeaturedCars() {
+  const featuredCars = await getFeaturedCars();
 
   return (
-    <section className="py-16">
+    <section className="px-4 md:px-8 lg:px-10 py-16">
       <div className="container">
         <h2 className="text-3xl font-bold mb-8 text-center">Featured Cars</h2>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {featuredCars.map((car) => (
-            <Card key={car.id}>
-              <CardHeader>
-                <CardTitle>{car.name}</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <Image
-                  src="/placeholder.svg?height=200&width=300"
-                  alt={car.name}
-                  width={300}
-                  height={200}
-                  className="rounded-md mb-4"
-                />
-                <p className="text-muted-foreground">Brand: {car.brand}</p>
-              </CardContent>
-              <CardFooter className="flex justify-between">
-                <span className="text-lg font-semibold">${car.price}/day</span>
-                <Button asChild>
-                  <Link href={`/cars/${car.id}`}>View Details</Link>
-                </Button>
-              </CardFooter>
-            </Card>
+          {featuredCars.data.map((car: Car) => (
+            <CarCard key={car.documentId} car={car} />
           ))}
         </div>
       </div>
