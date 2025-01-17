@@ -5,6 +5,8 @@ import landingImage from "./landing-image.webp";
 import { getFeaturedCars } from "@/data/car";
 import { Car } from "@/types";
 import CarCard from "@/components/car-card/car-card";
+import { Header } from "@/components/header/header";
+import { Footer } from "@/components/footer/footer";
 
 function HeroSection() {
   return (
@@ -12,9 +14,17 @@ function HeroSection() {
       <div className="container">
         <div className="flex flex-col md:flex-row items-center">
           <div className="md:w-1/2 mb-8 md:mb-0">
-            <h1 className="text-4xl md:text-6xl font-bold mb-4">Drive Your Dreams</h1>
-            <p className="text-xl mb-6">Rent the perfect car for your next adventure</p>
-            <Button size="lg" asChild className="p-9 bg-gradient-to-r from-gray-500 to-gray-700 text-2xl uppercase">
+            <h1 className="text-4xl md:text-6xl font-bold mb-4">
+              Drive Your Dreams
+            </h1>
+            <p className="text-xl mb-6">
+              Rent the perfect car for your next adventure
+            </p>
+            <Button
+              size="lg"
+              asChild
+              className="p-9 bg-gradient-to-r from-gray-500 to-gray-700 text-2xl uppercase"
+            >
               <Link href="/cars">Explore Cars</Link>
             </Button>
           </div>
@@ -29,7 +39,7 @@ function HeroSection() {
         </div>
       </div>
     </section>
-  )
+  );
 }
 
 async function FeaturedCars() {
@@ -46,13 +56,15 @@ async function FeaturedCars() {
         </div>
       </div>
     </section>
-  )
+  );
 }
 export default function Home() {
   return (
     <div className="flex flex-col">
+      <Header />
       <HeroSection />
       <FeaturedCars />
+      <Footer />
     </div>
   );
 }
