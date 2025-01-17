@@ -1,5 +1,4 @@
 import Link from "next/link";
-import { Button } from "@/components/ui/button";
 import UserMenu from "./user-menu";
 
 export function Header() {
@@ -24,7 +23,6 @@ export function Header() {
           </ul>
         </nav>
         <div className="flex items-center space-x-4">
-          <Button>Book Now</Button>
           <UserMenu />
         </div>
       </div>
