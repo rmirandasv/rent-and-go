@@ -34,7 +34,11 @@ export type Car = {
 };
 
 export type User = {
-  name: string;
+  id: number;
+  documentId: string;
+  username: string;
   email: string;
-  image: string;
+  confirmed: boolean;
+  blocked: boolean;
+  createdAt: string;
 };
