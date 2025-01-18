@@ -26,8 +26,6 @@ export async function GET(request: Request) {
   const res = await fetch(url.href);
   const data = await res.json();
 
-  console.log("data", data);
-
   (await cookies()).set("jwt", data.jwt, config);
 
   return NextResponse.redirect(new URL("/dashboard", request.url));
