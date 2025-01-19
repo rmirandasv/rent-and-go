@@ -35,10 +35,10 @@ export default async function RentedRentDetailPage({
         <div className="flex items-center space-x-4">
           <Link
             href="/dashboard"
-            className="flex items-center space-x-2"
+            className="flex items-center md:space-x-2"
           >
             <ArrowLeft size={24} />
-            <span>See all rented cars</span>
+            <span className="hidden md:flex">See all rented cars</span>
           </Link>
           <h1 className="text-4xl font-bold">
             {rented.data.car.brand.name} {rented.data.car.model.name}
@@ -46,7 +46,7 @@ export default async function RentedRentDetailPage({
         </div>
       </div>
       <div className="flex flex-col md:flex-row">
-        <div className="p-4 md:px-8 w-full md:1/2 flex flex-col">
+        <div className="p-4 md:px-8 w-full md:1/2 flex flex-col order-2 md:order-1">
           {rented.data.car.images && (
             <Carousel>
               <CarouselContent>
@@ -57,7 +57,7 @@ export default async function RentedRentDetailPage({
                       width={image.width}
                       height={image.height}
                       alt={rented.data.car.brand.name}
-                      className="rounded-md h-96"
+                      className="rounded-md h-auto md:h-96"
                     />
                   </CarouselItem>
                 ))}
@@ -101,7 +101,7 @@ export default async function RentedRentDetailPage({
             </Markdown>
           </div>
         </div>
-        <div className="p-4 md:px-8 w-full md:1/2 bg-gray-200">
+        <div className="p-4 md:px-8 w-full md:1/2 bg-gray-200 order-1 md:order-2">
           <h2 className="text-2xl font-bold">Rental details</h2>
           <div className="mt-4 flex-col">
             <div className="flex items-center space-x-1">

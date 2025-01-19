@@ -24,7 +24,7 @@ export default async function RentACarPage({
   const { data: user } = (await getAuthUser()) as { data: User };
   return (
     <div className="flex flex-col md:flex-row">
-      <div className="p-4 md:px-8 w-full md:1/2 flex flex-col">
+      <div className="p-4 md:px-8 w-full md:1/2 flex flex-col order-2 md:order-1">
         {car.images && (
           <Carousel>
             <CarouselContent>
@@ -35,7 +35,7 @@ export default async function RentACarPage({
                     width={image.width}
                     height={image.height}
                     alt={car.model.brand.name}
-                    className="rounded-md h-96"
+                    className="rounded-md h-auto md:h-96"
                   />
                 </CarouselItem>
               ))}
@@ -73,7 +73,7 @@ export default async function RentACarPage({
           </Markdown>
         </div>
       </div>
-      <div className="p-4 md:px-20 w-full md:1/2 bg-gray-200">
+      <div className="p-4 md:px-20 w-full md:1/2 bg-gray-200 order-1 md:order-2">
         <h3 className="text-2xl font-bold">Rent this car</h3>
         <p className="text-muted-foreground">
           Fill the form below to rent this car

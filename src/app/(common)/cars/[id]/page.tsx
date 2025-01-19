@@ -31,7 +31,7 @@ export default async function CarDetailPage({
                     width={image.width}
                     height={image.height}
                     alt={car.model.brand.name}
-                    className="rounded-md h-96"
+                    className="rounded-md h-auto md:h-96"
                   />
                 </CarouselItem>
               ))}

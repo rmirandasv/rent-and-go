@@ -43,7 +43,7 @@ export default function CarCard({ car }: { car: Car }) {
                     alt={car.model.name}
                     width={image.width}
                     height={image.height}
-                    className="rounded-md h-64"
+                    className="rounded-md h-auto md:h-64"
                   />
                 </CarouselItem>
               ))}

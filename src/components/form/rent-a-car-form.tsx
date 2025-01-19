@@ -88,7 +88,7 @@ export default function RentACarForm({
             </FormItem>
           )}
         />
-        <div className="flex items-center justify-between">
+        <div className="flex flex-col md:flex-row md:items-center md:justify-between space-y-2">
           <FormField
             control={form.control}
             name="start_date"
