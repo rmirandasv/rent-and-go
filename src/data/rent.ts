@@ -98,4 +98,58 @@ async function getRented({ documentId }: { documentId: string }) {
   return json;
 }
 
-export { createRentACarRequest, getRented };
+async function getRentals() {
+  const { data: user } = await getAuthUser();
+
+  if (!user) {
+    throw new Error("User not authenticated");
+  }
+  
+  const query = qs.stringify({
+    filters: {
+      user: {
+        documentId: {
+          $eq: user.documentId,
+        }
+      }
+    },
+    populate: {
+      car: {
+        fields: ["price_per_day", "license_plate", "description", "year"],
+        populate: {
+          brand: {
+            fields: ["name"],
+            populate: {
+              logo: {
+                fields: ["url", "width", "height"],
+              }
+            }
+          },
+          model: {
+            fields: ["name"],
+          },
+          images: {
+            fields: ["url", "width", "height"],
+          },
+        }
+      }
+    }
+  });
+
+  const res = await fetch(`${STRAPI_API_URL}/rentals?${query}`, {
+    headers: {
+      Authorization: `Bearer ${STRAPI_API_TOKEN}`,
+    },
+  });
+
+  if (!res.ok) {
+    console.error("json", await res.json());
+    throw new Error("Failed to fetch rental requests");
+  }
+
+  const json = await res.json();
+
+  return json;
+}
+
+export { createRentACarRequest, getRented, getRentals };
