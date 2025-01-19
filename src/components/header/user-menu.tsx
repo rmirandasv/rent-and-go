@@ -43,7 +43,7 @@ export default async function UserMenu() {
   return (
     <div className="py-2 px-4 flex items-center space-x-2">
       <UserIcon size={24} />
-      <span className="text-sm font-semibold">{data.username}</span>
+      <span className="text-sm font-semibold">{data.name || data.username}</span>
       <LogoutButton />
     </div>
   );
