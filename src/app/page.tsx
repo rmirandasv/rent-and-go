@@ -10,7 +10,7 @@ import { Footer } from "@/components/footer/footer";
 
 function HeroSection() {
   return (
-    <section className="px-4 md:px-8 lg:px-10 bg-gradient-to-r from-primary to-primary-foreground text-white py-20">
+    <section className="px-4 md:px-8 lg:px-10 bg-gradient-to-b from-primary to-primary-foreground text-white py-20">
       <div className="container">
         <div className="flex flex-col md:flex-row items-center">
           <div className="md:w-1/2 mb-8 md:mb-0">
