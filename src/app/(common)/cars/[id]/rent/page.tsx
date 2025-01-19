@@ -10,6 +10,9 @@ import Image from "next/image";
 import { STRAPI_URL } from "@/config/strapi";
 import Markdown from "react-markdown";
 import RentACarForm from "@/components/form/rent-a-car-form";
+import { getAuthUser } from "@/data/auth";
+import { User } from "@/types";
+import UserAccountForm from "@/components/form/user-account-form";
 
 export default async function RentACarPage({
   params,
@@ -18,6 +21,7 @@ export default async function RentACarPage({
 }) {
   const id = (await params).id;
   const car = await getCar(id);
+  const { data: user } = (await getAuthUser()) as { data: User };
   return (
     <div className="flex flex-col md:flex-row">
       <div className="p-4 md:px-8 w-full md:1/2 flex flex-col">
@@ -75,7 +79,16 @@ export default async function RentACarPage({
           Fill the form below to rent this car
         </p>
         <div className="p-4 bg-white mt-4  flex flex-col rounded-lg shadow">
-          <RentACarForm car={car} />
+          {user && (!user.name || !user.phone) && (
+            <div className="p-4 bg-red-100 text-red-600 rounded-lg">
+              <p className="text-lg font-bold">Please complete your profile</p>
+              <p>
+                You need to complete your profile before you can rent a car.
+              </p>
+              <UserAccountForm user={user} />
+            </div>
+          )}
+          {user && user.name && user.phone && <RentACarForm car={car} name={user.name} phone={user.phone} />}
         </div>
       </div>
     </div>

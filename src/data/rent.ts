@@ -2,6 +2,7 @@
 import { Car } from "@/types";
 import { STRAPI_API_URL, STRAPI_API_TOKEN } from "@/config/strapi";
 import { getAuthUser } from "./auth";
+import qs from "qs";
 
 async function createRentACarRequest({
   car,
@@ -56,4 +57,45 @@ async function createRentACarRequest({
   return json.data;
 }
 
-export { createRentACarRequest };
+async function getRented({ documentId }: { documentId: string }) {
+  const query = qs.stringify({
+    populate: {
+      car: {
+        fields: ["price_per_day", "license_plate", "description", "year"],
+        populate: {
+          brand: {
+            fields: ["name"],
+            populate: {
+              logo: {
+                fields: ["url", "width", "height"],
+              }
+            }
+          },
+          model: {
+            fields: ["name"],
+          },
+          images: {
+            fields: ["url", "width", "height"],
+          },
+        }
+      }
+    }
+  });
+
+  const res = await fetch(`${STRAPI_API_URL}/rentals/${documentId}?${query}`, {
+    headers: {
+      Authorization: `Bearer ${STRAPI_API_TOKEN}`,
+    },
+  });
+
+  if (!res.ok) {
+    console.error("json", await res.json());
+    throw new Error("Failed to fetch rental request");
+  }
+
+  const json = await res.json();
+
+  return json;
+}
+
+export { createRentACarRequest, getRented };

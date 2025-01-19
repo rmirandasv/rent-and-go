@@ -10,8 +10,11 @@ export async function POST(request: Request) {
   formData.append("end_date", data.end_date);
 
   try {
-    await createRentACarRequest({ car, formData });
-    return NextResponse.json({ message: "Rental request created" }, { status: 201 });
+    const rent = await createRentACarRequest({ car, formData });
+    return NextResponse.json({ 
+      data: rent,
+      message: "Rental request created successfully"
+    });
   } catch (error) {
     console.error(error)
     return NextResponse.json(
