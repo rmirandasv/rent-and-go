@@ -48,7 +48,7 @@ export default function RentACarForm({
     });
     setIsLoading(false);
     if (res.ok) {
-      router.push(`/dashboard/rented/${(await res.json()).data.documentId}?success=true`);
+      router.push(`/dashboard/${(await res.json()).data.documentId}?success=true`);
     }
   };
 

@@ -2,10 +2,11 @@ import { Rental } from "@/types";
 import Image from "next/image";
 import { STRAPI_URL } from "@/config/strapi";
 import StatusBadge from "./status-badge";
+import Link from "next/link";
 
 export default function RentedCarItem({ rental }: { rental: Rental }) {
   return (
-    <div className="flex flex-col md:flex-row p-4 md:p-8 bg-white rounded-lg border border-gray-200">
+    <Link href={`/dashboard/${rental.documentId}`} className="flex flex-col md:flex-row p-4 md:p-8 bg-white rounded-lg border border-gray-200">
       <div className="flex-1">
         <h2 className="text-lg font-bold">
           {rental.car.brand.name} {rental.car.model.name}
@@ -45,6 +46,6 @@ export default function RentedCarItem({ rental }: { rental: Rental }) {
         />
         <p className="text-lg font-bold mt-2">${rental.car.price_per_day}</p>
       </div>
-    </div>
+    </Link>
   );
 }

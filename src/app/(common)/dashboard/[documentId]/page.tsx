@@ -34,7 +34,7 @@ export default async function RentedRentDetailPage({
       <div className="p-4 md:px-8 flex flex-col items-center md:flex-row md:justify-between">
         <div className="flex items-center space-x-4">
           <Link
-            href="/dashboard/rented"
+            href="/dashboard"
             className="flex items-center space-x-2"
           >
             <ArrowLeft size={24} />
