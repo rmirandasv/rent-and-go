@@ -9,22 +9,18 @@ import { getCar } from "@/data/car";
 import Image from "next/image";
 import { STRAPI_URL } from "@/config/strapi";
 import Markdown from "react-markdown";
-import RentACarForm from "@/components/form/rent-a-car-form";
-import { getAuthUser } from "@/data/auth";
-import { User } from "@/types";
-import UserAccountForm from "@/components/form/user-account-form";
+import RentCarLink from "@/components/rent-car-link/rent-car-link";
 
-export default async function RentACarPage({
+export default async function CarDetailPage({
   params,
 }: {
-  params: Promise<{ id: string }>;
+  params: Promise<{ documentId: string }>;
 }) {
-  const id = (await params).id;
+  const id = (await params).documentId;
   const car = await getCar(id);
-  const { data: user } = (await getAuthUser()) as { data: User };
   return (
     <div className="flex flex-col md:flex-row">
-      <div className="p-4 md:px-8 w-full md:1/2 flex flex-col order-2 md:order-1">
+      <div className="p-4 md:px-8 w-full md:1/2 flex flex-col">
         {car.images && (
           <Carousel>
             <CarouselContent>
@@ -67,29 +63,19 @@ export default async function RentACarPage({
           </div>
           <span className="text-2xl text-gray-600">{car.year}</span>
         </div>
-        <div className="mt-4 flex-col">
-          <Markdown className="p-4 bg-white mt-4 max-w-full w-full prose rounded-lg shadow">
-            {car.description}
-          </Markdown>
-        </div>
       </div>
-      <div className="p-4 md:px-20 w-full md:1/2 bg-gray-200 order-1 md:order-2">
-        <h3 className="text-2xl font-bold">Rent this car</h3>
-        <p className="text-muted-foreground">
-          Fill the form below to rent this car
-        </p>
-        <div className="p-4 bg-white mt-4  flex flex-col rounded-lg shadow">
-          {user && (!user.name || !user.phone) && (
-            <div className="p-4 bg-red-100 text-red-600 rounded-lg">
-              <p className="text-lg font-bold">Please complete your profile</p>
-              <p>
-                You need to complete your profile before you can rent a car.
-              </p>
-              <UserAccountForm user={user} />
-            </div>
-          )}
-          {user && user.name && user.phone && <RentACarForm car={car} name={user.name} phone={user.phone} />}
+      <div className="p-4 md:px-20 w-full md:1/2 bg-gray-200">
+        <div className="flex items-center justify-between">
+          <h1 className="text-4xl">{car.model.name}</h1>
+          <span className="text-2xl font-bold text-green-600">
+            ${car.price_per_day} / day
+          </span>
         </div>
+        <h2 className="text-base text-gray-600">{car.model.brand.name}</h2>
+        <Markdown className="p-4 bg-white mt-4 max-w-full w-full prose rounded-lg shadow mb-4">
+          {car.description}
+        </Markdown>
+        <RentCarLink car={car} />
       </div>
     </div>
   );
