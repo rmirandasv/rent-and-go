@@ -9,20 +9,23 @@ import { Brand } from "@/types";
 import { CarIcon } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
+import { Button } from "../ui/button";
 
 const strapiBaseUrl = process.env.STRAPI_URL;
 
 export default function BrandCard({ brand }: { brand: Brand }) {
   return (
-    <Card key={brand.id} className="w-fit">
+    <Card key={brand.id} className="w-auto">
       <CardHeader>
-        <Image
-          src={`${strapiBaseUrl}${brand.logo.url}`}
-          alt={brand.name}
-          width={brand.logo.width}
-          height={brand.logo.height}
-          className="size-60 aspect-square"
-        />
+        <div className="flex justify-center">
+          <Image
+            src={`${strapiBaseUrl}${brand.logo.url}`}
+            alt={brand.name}
+            width={brand.logo.width}
+            height={brand.logo.height}
+            className="size-60 aspect-square"
+          />
+        </div>
       </CardHeader>
       <CardContent className="flex items-center justify-between">
         <CardTitle>{brand.name}</CardTitle>
@@ -32,9 +35,9 @@ export default function BrandCard({ brand }: { brand: Brand }) {
         </div>
       </CardContent>
       <CardFooter className="flex items-center justify-end">
-        <Link href={`/brands/${brand.id}`} className="transition ease-in-out p-2 bg-transparent border border-transparent hover:bg-indigo-100 hover:text-indigo-600 hover:border-indigo-600 rounded-md duration-150">
-          View Cars
-        </Link>
+        <Button asChild>
+          <Link href={`/brands/${brand.documentId}`}>View Cars</Link>
+        </Button>
       </CardFooter>
     </Card>
   );

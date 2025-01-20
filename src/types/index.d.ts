@@ -1,5 +1,6 @@
 export type Brand = {
   id: number;
+  documentId: string;
   name: string;
   logo: {
     url: string;
