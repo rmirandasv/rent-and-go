@@ -47,9 +47,9 @@ async function FeaturedCars() {
 
   return (
     <section className="px-4 md:px-8 lg:px-10 py-16">
-      <div className="container">
+      <div className="container mx-auto">
         <h2 className="text-3xl font-bold mb-8 text-center">Featured Cars</h2>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-y-8 gap-x-16">
           {featuredCars.data.map((car: Car) => (
             <CarCard key={car.documentId} car={car} />
           ))}
