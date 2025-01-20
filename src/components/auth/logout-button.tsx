@@ -1,6 +1,7 @@
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 import { Button } from "@/components/ui/button";
+import { getAuthUser } from "@/data/auth";
 
 const config = {
   maxAge: 60 * 60 * 24 * 7,
@@ -16,7 +17,10 @@ async function logoutAction() {
   redirect("/");
 }
 
-export function LogoutButton() {
+export async function LogoutButton() {
+  const { data: user } = await getAuthUser();
+
+  if (!user) return null;
   return (
     <form action={logoutAction}>
       <Button variant="secondary" type="submit">Logout</Button>
